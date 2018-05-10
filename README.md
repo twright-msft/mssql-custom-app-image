@@ -1,6 +1,16 @@
 # Overview
 An example of creating a container image from mssql-server-linux that will configure some server settings like a user role, login, create a database, and populate some schema, and test data into it.
 
+# Example usage
+
+``` 
+docker build . -t mssql-custom-app-image
+
+docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=Password123 -p 1433:1433 -it mssql-custom-app-image
+
+docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=Password123 -e CREATE_TEST_DATA=Y -p 1433:1433 -it mssql-custom-app-image
+```
+
 # How it works
 In this example, the Dockerfile adds the .sql scripts into the image along with some scripts that are executed by the ENTRYPOINT.
 
